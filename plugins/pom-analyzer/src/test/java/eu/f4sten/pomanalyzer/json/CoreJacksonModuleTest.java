@@ -35,7 +35,7 @@ import eu.fasten.core.maven.data.VersionConstraint;
 
 public class CoreJacksonModuleTest {
 
-    private ObjectMapper om;
+    private static ObjectMapper om;
 
     @BeforeEach
     public void setup() {
@@ -67,7 +67,7 @@ public class CoreJacksonModuleTest {
         test(e, "\"gid:aid\"");
     }
 
-    private void test(Object in, String expectedJson) {
+    public static void test(Object in, String expectedJson) {
         try {
             var json = om.writeValueAsString(in);
             assertJsonEquals(expectedJson, json);
@@ -78,7 +78,7 @@ public class CoreJacksonModuleTest {
         }
     }
 
-    private void assertJsonEquals(String expectedJson, String actualJson) {
+    private static void assertJsonEquals(String expectedJson, String actualJson) {
         JSONAssert.assertEquals(expectedJson, actualJson, JSONCompareMode.STRICT_ORDER);
     }
 }
