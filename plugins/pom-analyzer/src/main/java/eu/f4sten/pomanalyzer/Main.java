@@ -45,7 +45,7 @@ import eu.f4sten.pomanalyzer.utils.PackagingFixer;
 import eu.f4sten.pomanalyzer.utils.PomExtractor;
 import eu.f4sten.pomanalyzer.utils.ProgressTracker;
 import eu.f4sten.pomanalyzer.utils.Resolver;
-import eu.fasten.core.maven.data.PomAnalysisResult;
+import eu.fasten.core.maven.data.Pom;
 import eu.fasten.core.maven.utils.MavenUtilities;
 
 public class Main implements Plugin {
@@ -208,7 +208,7 @@ public class Main implements Plugin {
         tracker.markCompletionInDb(result.toCoordinate(), lane);
     }
 
-    private void store(PomAnalysisResult result, Lane lane, Date consumedAt) {
+    private void store(Pom result, Lane lane, Date consumedAt) {
         LOG.info("Storing results for {} ...", result.toCoordinate());
         LOG.debug("Finished: {}", result);
         if (tracker.existsInDatabase(result.toCoordinate(), lane)) {
