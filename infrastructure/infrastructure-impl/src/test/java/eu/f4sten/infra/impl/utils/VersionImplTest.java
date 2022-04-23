@@ -30,6 +30,8 @@ import org.junit.jupiter.api.Test;
 
 public class VersionImplTest {
 
+    private static final String CURRENT_VERSION = "dev";
+
     private static String srcVersion;
 
     @BeforeAll
@@ -53,7 +55,7 @@ public class VersionImplTest {
     @Test
     public void getDefault() {
         var actual = new VersionImpl().get();
-        var expected = "dev";
+        var expected = CURRENT_VERSION;
         assertEquals(expected, actual);
     }
 
