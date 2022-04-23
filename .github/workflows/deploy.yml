@@ -52,17 +52,26 @@ jobs:
           # disable test for default version
           TEST=`find . -name "VersionImplTest.java"`
           sed -i "s/CURRENT_VERSION = \"[^\"]*\"/CURRENT_VERSION = \"${{ env.version }}\"/" $TEST
-          cat $TEST
 
       - name: Build and deploy Maven packages
         run: |
-          mvn -B -ntp clean package -s $GITHUB_WORKSPACE/settings.xml
-          echo "TODO Re-enable me! :D" # mvn -B -ntp clean deploy -s $GITHUB_WORKSPACE/settings.xml
+          mvn -B -ntp clean package -DskipTests -s $GITHUB_WORKSPACE/settings.xml
+          #mvn -B -ntp clean deploy -s $GITHUB_WORKSPACE/settings.xml
+          echo "Re-enable deploy :D"
+          echo "Re-enable deploy :D"
+          echo "Re-enable deploy :D"
+          echo "Re-enable deploy :D"
+          echo "Re-enable deploy :D"
+          echo "Re-enable deploy :D"
+          echo "Re-enable deploy :D"
+          echo "Re-enable deploy :D"
+          echo "Re-enable deploy :D"
         env:
           GITHUB_TOKEN: ${{ github.token }}
 
       - name: Commit and tag the release version
         run: |
+          rm settings.xml
           git add .
           git commit -m "Release version ${{ env.version }}"
           git push origin HEAD:main
@@ -83,7 +92,16 @@ jobs:
             --tag $IMG:${{ env.version_major }}.latest \
             --tag $IMG:latest \
             .
-          docker push --all-tags $IMG
+          #docker push --all-tags $IMG
+          echo "re-enable docker push"
+          echo "re-enable docker push"
+          echo "re-enable docker push"
+          echo "re-enable docker push"
+          echo "re-enable docker push"
+          echo "re-enable docker push"
+          echo "re-enable docker push"
+          echo "re-enable docker push"
+          echo "re-enable docker push"
 
       - name: Update all projects to next snapshot release
         run: |
@@ -99,8 +117,6 @@ jobs:
 
       - name: Commit the next snapshot release
         run: |
-          pwd
-          git tag --delete release
           git add .
           git commit -m "Bump version to ${{ env.version_next }}"
-          git push
+          git push origin HEAD:main
