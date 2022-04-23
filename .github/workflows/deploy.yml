@@ -65,7 +65,7 @@ jobs:
         run: |
           git add .
           git commit -m "Release version ${{ env.version }}"
-          git push
+          git push origin HEAD:main
           git tag --delete release
           git tag "v${{ env.version }}"
           git push --tags
