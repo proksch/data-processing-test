@@ -26,7 +26,7 @@ jobs:
 
       - name: Parse and provide version info
         run: |
-          cd releng/
+          cd releng
           VERSION_RAW=`mvn help:evaluate -Dexpression=project.version -q -DforceStdout`
           VERSION=`echo $VERSION_RAW | cut -d"-" -f1` # get rid of -SNAPSHOT
           MAJOR=`echo "$VERSION" | cut -d . -f 1`
@@ -49,9 +49,7 @@ jobs:
         run: |
           cd infrastructure/infrastructure-impl
           echo "${{ env.version }}" > src/main/resources/version.txt
-          # disable test for default version
-          TEST=`find . -name "VersionImplTest.java"`
-          sed -i "s/CURRENT_VERSION = \"[^\"]*\"/CURRENT_VERSION = \"${{ env.version }}\"/" $TEST
+          ../../releng/set_VersionImplTest_constant.sh ${{ env.version }}
 
       - name: Build and deploy Maven packages
         run: |
@@ -112,8 +110,7 @@ jobs:
         run: |
           cd infrastructure/infrastructure-impl
           echo "${{ env.version_next }}" > src/main/resources/version.txt
-          TEST=`find . -name "VersionImplTest.java"`
-          sed -i "s/CURRENT_VERSION = \".*?\";/CURRENT_VERSION = \"${{ env.version_next }}\"/" $TEST
+          ../../releng/set_VersionImplTest_constant.sh ${{ env.version_next }}
 
       - name: Commit the next snapshot release
         run: |
