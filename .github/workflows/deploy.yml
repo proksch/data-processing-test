@@ -73,7 +73,7 @@ jobs:
           git add .
           git commit -m "Release version ${{ env.version }}"
           git push origin HEAD:main
-          git push --delete origin release
+          git push origin :release
           git tag "v${{ env.version }}"
           git push --tags
 
