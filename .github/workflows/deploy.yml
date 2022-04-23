@@ -47,7 +47,9 @@ jobs:
           sed -i "s/CURRENT_VERSION = \".*?\";/CURRENT_VERSION = \"${{ env.version }}\"/" $TEST
 
       - name: Build and deploy Maven packages
-        run: echo "TODO Re-enable me! :D" # mvn -B -ntp clean deploy -s $GITHUB_WORKSPACE/settings.xml
+        run: |
+          mvn -B -ntp clean package -s $GITHUB_WORKSPACE/settings.xml
+          echo "TODO Re-enable me! :D" # mvn -B -ntp clean deploy -s $GITHUB_WORKSPACE/settings.xml
         env:
           GITHUB_TOKEN: ${{ github.token }}
 
