@@ -51,7 +51,8 @@ jobs:
           echo "${{ env.version }}" > src/main/resources/version.txt
           # disable test for default version
           TEST=`find . -name "VersionImplTest.java"`
-          sed -i "s/CURRENT_VERSION = \".*?\";/CURRENT_VERSION = \"${{ env.version }}\"/" $TEST
+          sed -i "s/CURRENT_VERSION = \"[^\"]*\"/CURRENT_VERSION = \"${{ env.version }}\"/" $TEST
+          cat $TEST
 
       - name: Build and deploy Maven packages
         run: |
