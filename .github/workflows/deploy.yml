@@ -74,7 +74,7 @@ jobs:
           git commit -m "Release of version ${{ env.version }}"
           git push origin HEAD:main
           git tag "v${{ env.version }}"
-          git push --tags
+          git push origin "v${{ env.version }}"
 
       - name: Build Docker image and push to ghcr.io
         run: |
