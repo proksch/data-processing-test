@@ -103,7 +103,8 @@
         <repository>
             <id>github</id>
             <name>GitHub Packages</name>
-            <url>https://maven.pkg.github.com/fasten-project/data-processing/</url>
+            <url>https://maven.pkg.github.com/proksch/data-processing-test/</url>
+            <!--<url>https://maven.pkg.github.com/fasten-project/data-processing/</url>-->
             <releases>
                 <enabled>true</enabled>
             </releases>

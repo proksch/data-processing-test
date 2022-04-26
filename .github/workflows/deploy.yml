@@ -53,8 +53,8 @@ jobs:
 
       - name: Build and deploy Maven packages
         run: |
-          mvn -B -ntp clean package -DskipTests -s $GITHUB_WORKSPACE/settings.xml
-          #mvn -B -ntp clean deploy -s $GITHUB_WORKSPACE/settings.xml
+          cd releng
+          mvn -B -ntp clean deploy -s $GITHUB_WORKSPACE/settings.xml
           echo "Re-enable deploy :D"
           echo "Re-enable deploy :D"
           echo "Re-enable deploy :D"
